@@ -1,0 +1,29 @@
+[
+  {
+    "name" : "nm",
+    "image": "nginx",
+    "portMappings": [
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 80
+      }
+    ],
+    "cpu": 128,
+    "memory": 128,
+    "essential": true,
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "nm-logs",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "nm"
+        }
+    },
+    "command": [
+      "sh",
+      "-c",
+      "echo '<html><body><h1>Hello, World v3!</h1></body></html>' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"
+    ]
+  }
+]
